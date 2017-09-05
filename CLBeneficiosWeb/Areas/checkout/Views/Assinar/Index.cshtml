@@ -1,0 +1,128 @@
+﻿@using CLBeneficiosWeb.Models
+@model List<Beneficios_Convenios>
+@{
+    decimal Preco_Mensal = (decimal)ViewBag.Preco_Mensal;
+    decimal Preco_Assinatura = (decimal)ViewBag.Preco_Assinatura;
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <script src="~/Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/bower_components/bootstrap-checkbox-x/js/checkbox-x.min.js"></script>
+        <link href="~/bower_components/bootstrap-checkbox-x/css/checkbox-x.min.css" rel="stylesheet" />
+        <!--script src="~/Content/js/plugins/bootstrap/bootstrap.min.js"></script-->
+        <meta name="viewport" content="width=device-width" />
+        <title>Clube de Benefícios</title>
+        <style>
+            body {
+                font: Verdana 10px !important;
+            }
+
+            .shadow-logo {
+                height: 90px;
+                line-height: 90px;
+                box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
+                -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
+                -moz-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
+            }
+
+            .container-checkout {
+                min-height: 460px;
+                width: 90%;
+            }
+
+            img.icone-beneficio {
+                width: 30px;
+            }
+
+            .quadro-preso {
+                border-left: solid 1px black;
+            }
+
+            .preco {
+                font-family: "Verdana";
+                font-size: 2em;
+                font-weight:bold;
+                color: maroon;
+                text-align: right;
+            }
+
+            .cbx-icon {
+                color:green;
+            }
+            .cbx-disabled {
+                background-color: blanchedalmond;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="white shadow-logo">
+            <div class="nav-wrapper container page-header logo-convenio">
+                <img src="~/Content/img/convenios/c0000001.png" />
+            </div>
+        </nav>
+
+        <div class="container container-checkout">
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Selecione e acrescente produtos/serviços da lista abaixo à sua Cesta de Benefícios</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <div class="col-md-9">
+                                <form id="lista_beneficios">
+                                    @foreach (Beneficios_Convenios b in Model)
+                                    {
+                                        <div class="col-xs-12 col-sm-6 col-md-6 form-group">
+                                            <label for="chk@(b.idBeneficio.ToString("000000"))" class="cbx-label small">
+                                                <input type="checkbox" name="ListaBeneficios" valor="@b.idBeneficio" id="chk@(b.idBeneficio.ToString("000000"))" @(Html.Raw(b.Obrigatorio ? "checked=\"checked\"" : ""))  @(Html.Raw(b.Obrigatorio ? "disabled=\"disabled\"" : "")) data-size="lg" class="cbx-label"  @(Html.Raw(b.Obrigatorio ? "value=\"1\"" : "value=\"0\"")) />
+                                                <img class="icone-beneficio" src="~/Content/img/icones/b@(b.idBeneficio.ToString("000000")).png" /> @b.Beneficio.Nome_Beneficio
+                                            </label>
+                                        </div>
+                                    }
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="col-md-12 quadro-preso">
+                                    <span id="mostra_preco">
+                                        R$ <span class="preco" id="preco_pacote">@Preco_Mensal.ToString("#,##0.00")</span> / mês
+                                        @if (Preco_Assinatura > 0)
+                                        {
+                                            <br /><span>+ R$  @Preco_Assinatura.ToString("#,##0.00") apenas na 1º mensalidade (postagem do cartão)</span>
+                                        }
+                                    </span>
+                                    <br /><button id="btnAssinar" class="btn btn-danger col-md-12">Assinar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    $(document).on("ready", function () {
+        $('input[name="ListaBeneficios"]')
+            .checkboxX({ threeState: false, enclosedLabel: true })
+            .change(function () {
+                $('#mostra_preco').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>')
+                var l = "";
+                $('input[name="ListaBeneficios"]').each(function () {
+                    l += (($(this).val() == 1) ? (l == "" ? "" : "&") + "B=" + $(this).attr('valor') : "");
+                })
+                $.get("/Negocial/Preco/Calcular?" + l, function (dados) {
+                    $('#mostra_preco').html(dados)
+                });
+            });
+        $('#btnAssinar').click(function (e) {
+            //e.defaultPrevented();
+            alert('Assinar ' + $('#mostra_preco').text())
+        })
+    })
+</script>

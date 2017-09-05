@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbCL_BeneficiosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Associado">
+          <Key>
+            <PropertyRef Name="CPF" />
+          </Key>
+          <Property Name="CPF" Type="bigint" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EMail" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Data_Nascimento" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Beneficios">
+          <Key>
+            <PropertyRef Name="idBeneficio" />
+          </Key>
+          <Property Name="idBeneficio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Beneficio" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Preço_Mensal_Base" Type="money" Nullable="false" />
+          <Property Name="Preço_Assinatura_Base" Type="money" Nullable="false" />
+          <Property Name="Obrigatorio_Base" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Beneficios_Convenios">
+          <Key>
+            <PropertyRef Name="idBeneficio" />
+            <PropertyRef Name="idConvênio" />
+          </Key>
+          <Property Name="idBeneficio" Type="int" Nullable="false" />
+          <Property Name="idConvênio" Type="int" Nullable="false" />
+          <Property Name="Preço_Mensal" Type="money" Nullable="false" />
+          <Property Name="Preço_Assinatura" Type="money" Nullable="false" />
+          <Property Name="Obrigatorio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Convenio">
+          <Key>
+            <PropertyRef Name="idConvênio" />
+          </Key>
+          <Property Name="idConvênio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Convenio" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apelido_Convenio" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="URL_Raiz" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Convenio_Associado">
+          <Key>
+            <PropertyRef Name="idConvênio" />
+            <PropertyRef Name="CPF" />
+          </Key>
+          <Property Name="idConvênio" Type="int" Nullable="false" />
+          <Property Name="CPF" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Beneficios_Convenios_Beneficios">
+          <End Role="Beneficios" Type="Self.Beneficios" Multiplicity="1" />
+          <End Role="Beneficios_Convenios" Type="Self.Beneficios_Convenios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficios">
+              <PropertyRef Name="idBeneficio" />
+            </Principal>
+            <Dependent Role="Beneficios_Convenios">
+              <PropertyRef Name="idBeneficio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beneficios_Convenios_Convenio">
+          <End Role="Convenio" Type="Self.Convenio" Multiplicity="1" />
+          <End Role="Beneficios_Convenios" Type="Self.Beneficios_Convenios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="idConvênio" />
+            </Principal>
+            <Dependent Role="Beneficios_Convenios">
+              <PropertyRef Name="idConvênio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Convenio_Associado_Associado">
+          <End Role="Associado" Type="Self.Associado" Multiplicity="1" />
+          <End Role="Convenio_Associado" Type="Self.Convenio_Associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Associado">
+              <PropertyRef Name="CPF" />
+            </Principal>
+            <Dependent Role="Convenio_Associado">
+              <PropertyRef Name="CPF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Convenio_Associado_Convenio">
+          <End Role="Convenio" Type="Self.Convenio" Multiplicity="1" />
+          <End Role="Convenio_Associado" Type="Self.Convenio_Associado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="idConvênio" />
+            </Principal>
+            <Dependent Role="Convenio_Associado">
+              <PropertyRef Name="idConvênio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbCL_BeneficiosModelStoreContainer">
+          <EntitySet Name="Associado" EntityType="Self.Associado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Beneficios" EntityType="Self.Beneficios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Beneficios_Convenios" EntityType="Self.Beneficios_Convenios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Convenio" EntityType="Self.Convenio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Convenio_Associado" EntityType="Self.Convenio_Associado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Beneficios_Convenios_Beneficios" Association="Self.FK_Beneficios_Convenios_Beneficios">
+            <End Role="Beneficios" EntitySet="Beneficios" />
+            <End Role="Beneficios_Convenios" EntitySet="Beneficios_Convenios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beneficios_Convenios_Convenio" Association="Self.FK_Beneficios_Convenios_Convenio">
+            <End Role="Convenio" EntitySet="Convenio" />
+            <End Role="Beneficios_Convenios" EntitySet="Beneficios_Convenios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Convenio_Associado_Associado" Association="Self.FK_Convenio_Associado_Associado">
+            <End Role="Associado" EntitySet="Associado" />
+            <End Role="Convenio_Associado" EntitySet="Convenio_Associado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Convenio_Associado_Convenio" Association="Self.FK_Convenio_Associado_Convenio">
+            <End Role="Convenio" EntitySet="Convenio" />
+            <End Role="Convenio_Associado" EntitySet="Convenio_Associado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbCL_BeneficiosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Associado">
+          <Key>
+            <PropertyRef Name="CPF" />
+          </Key>
+          <Property Name="CPF" Type="Int64" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Data_Nascimento" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Convenios" Relationship="Self.Convenio_Associado" FromRole="Associado" ToRole="Convenio" />
+        </EntityType>
+        <EntityType Name="Beneficio">
+          <Key>
+            <PropertyRef Name="idBeneficio" />
+          </Key>
+          <Property Name="idBeneficio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Beneficio" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Preço_Mensal_Base" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Preço_Assinatura_Base" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Obrigatorio_Base" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Beneficios_Convenios" Relationship="Self.FK_Beneficios_Convenios_Beneficios" FromRole="Beneficios" ToRole="Beneficios_Convenios" />
+        </EntityType>
+        <EntityType Name="Beneficios_Convenios">
+          <Key>
+            <PropertyRef Name="idBeneficio" />
+            <PropertyRef Name="idConvênio" />
+          </Key>
+          <Property Name="idBeneficio" Type="Int32" Nullable="false" />
+          <Property Name="idConvênio" Type="Int32" Nullable="false" />
+          <Property Name="Preço_Mensal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Preço_Assinatura" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Obrigatorio" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Beneficio" Relationship="Self.FK_Beneficios_Convenios_Beneficios" FromRole="Beneficios_Convenios" ToRole="Beneficios" />
+          <NavigationProperty Name="Convenio" Relationship="Self.FK_Beneficios_Convenios_Convenio" FromRole="Beneficios_Convenios" ToRole="Convenio" />
+        </EntityType>
+        <EntityType Name="Convenio">
+          <Key>
+            <PropertyRef Name="idConvênio" />
+          </Key>
+          <Property Name="idConvênio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Convenio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apelido_Convenio" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL_Raiz" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Beneficios_Convenios" Relationship="Self.FK_Beneficios_Convenios_Convenio" FromRole="Convenio" ToRole="Beneficios_Convenios" />
+          <NavigationProperty Name="Associadoes" Relationship="Self.Convenio_Associado" FromRole="Convenio" ToRole="Associado" />
+        </EntityType>
+        <Association Name="FK_Beneficios_Convenios_Beneficios">
+          <End Role="Beneficios" Type="Self.Beneficio" Multiplicity="1" />
+          <End Role="Beneficios_Convenios" Type="Self.Beneficios_Convenios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficios">
+              <PropertyRef Name="idBeneficio" />
+            </Principal>
+            <Dependent Role="Beneficios_Convenios">
+              <PropertyRef Name="idBeneficio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beneficios_Convenios_Convenio">
+          <End Role="Convenio" Type="Self.Convenio" Multiplicity="1" />
+          <End Role="Beneficios_Convenios" Type="Self.Beneficios_Convenios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenio">
+              <PropertyRef Name="idConvênio" />
+            </Principal>
+            <Dependent Role="Beneficios_Convenios">
+              <PropertyRef Name="idConvênio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Convenio_Associado">
+          <End Role="Associado" Type="Self.Associado" Multiplicity="*" />
+          <End Role="Convenio" Type="Self.Convenio" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="dbCL_BeneficiosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Associadoes" EntityType="Self.Associado" />
+          <EntitySet Name="Beneficios" EntityType="Self.Beneficio" />
+          <EntitySet Name="Beneficios_Convenios" EntityType="Self.Beneficios_Convenios" />
+          <EntitySet Name="Convenios" EntityType="Self.Convenio" />
+          <AssociationSet Name="FK_Beneficios_Convenios_Beneficios" Association="Self.FK_Beneficios_Convenios_Beneficios">
+            <End Role="Beneficios" EntitySet="Beneficios" />
+            <End Role="Beneficios_Convenios" EntitySet="Beneficios_Convenios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beneficios_Convenios_Convenio" Association="Self.FK_Beneficios_Convenios_Convenio">
+            <End Role="Convenio" EntitySet="Convenios" />
+            <End Role="Beneficios_Convenios" EntitySet="Beneficios_Convenios" />
+          </AssociationSet>
+          <AssociationSet Name="Convenio_Associado" Association="Self.Convenio_Associado">
+            <End Role="Associado" EntitySet="Associadoes" />
+            <End Role="Convenio" EntitySet="Convenios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbCL_BeneficiosModelStoreContainer" CdmEntityContainer="dbCL_BeneficiosEntities">
+          <EntitySetMapping Name="Associadoes">
+            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Associado">
+              <MappingFragment StoreEntitySet="Associado">
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Data_Nascimento" ColumnName="Data_Nascimento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beneficios">
+            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Beneficio">
+              <MappingFragment StoreEntitySet="Beneficios">
+                <ScalarProperty Name="idBeneficio" ColumnName="idBeneficio" />
+                <ScalarProperty Name="Nome_Beneficio" ColumnName="Nome_Beneficio" />
+                <ScalarProperty Name="Preço_Mensal_Base" ColumnName="Preço_Mensal_Base" />
+                <ScalarProperty Name="Preço_Assinatura_Base" ColumnName="Preço_Assinatura_Base" />
+                <ScalarProperty Name="Obrigatorio_Base" ColumnName="Obrigatorio_Base" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Beneficios_Convenios">
+            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Beneficios_Convenios">
+              <MappingFragment StoreEntitySet="Beneficios_Convenios">
+                <ScalarProperty Name="idBeneficio" ColumnName="idBeneficio" />
+                <ScalarProperty Name="idConvênio" ColumnName="idConvênio" />
+                <ScalarProperty Name="Preço_Mensal" ColumnName="Preço_Mensal" />
+                <ScalarProperty Name="Preço_Assinatura" ColumnName="Preço_Assinatura" />
+                <ScalarProperty Name="Obrigatorio" ColumnName="Obrigatorio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Convenios">
+            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Convenio">
+              <MappingFragment StoreEntitySet="Convenio">
+                <ScalarProperty Name="idConvênio" ColumnName="idConvênio" />
+                <ScalarProperty Name="Nome_Convenio" ColumnName="Nome_Convenio" />
+                <ScalarProperty Name="Apelido_Convenio" ColumnName="Apelido_Convenio" />
+                <ScalarProperty Name="URL_Raiz" ColumnName="URL_Raiz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Convenio_Associado" TypeName="dbCL_BeneficiosModel.Convenio_Associado" StoreEntitySet="Convenio_Associado">
+            <EndProperty Name="Associado">
+              <ScalarProperty Name="CPF" ColumnName="CPF" />
+            </EndProperty>
+            <EndProperty Name="Convenio">
+              <ScalarProperty Name="idConvênio" ColumnName="idConvênio" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
