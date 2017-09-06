@@ -433,6 +433,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -446,6 +447,7 @@
     <Compile Include="Areas\checkout\Controllers\AssinarController.cs" />
     <Compile Include="Areas\Negocial\Controllers\PrecoController.cs" />
     <Compile Include="Areas\Negocial\NegocialAreaRegistration.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Models\Associado.cs">
       <DependentUpon>CLBeneficios.tt</DependentUpon>
     </Compile>
@@ -602,7 +604,7 @@
     <Content Include="Content\js\plugins\validator\validator.min.js" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_ControlSidebar.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
