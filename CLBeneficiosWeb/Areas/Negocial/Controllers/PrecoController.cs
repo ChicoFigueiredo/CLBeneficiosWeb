@@ -10,7 +10,7 @@ namespace CLBeneficiosWeb.Areas.Negocial.Controllers
 {
     public class PrecoController : Controller
     {
-        dbCL_BeneficiosEntities db = new dbCL_BeneficiosEntities();
+        CLBeneficiosEntities db = new CLBeneficiosEntities();
 
         // GET: Negocial/Preco
         public ActionResult Index()

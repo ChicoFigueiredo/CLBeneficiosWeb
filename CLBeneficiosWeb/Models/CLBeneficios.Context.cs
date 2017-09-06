@@ -13,10 +13,10 @@ namespace CLBeneficiosWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbCL_BeneficiosEntities : DbContext
+    public partial class CLBeneficiosEntities : DbContext
     {
-        public dbCL_BeneficiosEntities()
-            : base("name=dbCL_BeneficiosEntities")
+        public CLBeneficiosEntities()
+            : base("name=CLBeneficiosEntities")
         {
         }
     

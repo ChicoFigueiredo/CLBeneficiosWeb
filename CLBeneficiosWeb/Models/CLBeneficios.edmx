@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbCL_BeneficiosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CLBeneficiosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Associado">
           <Key>
             <PropertyRef Name="CPF" />
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbCL_BeneficiosModelStoreContainer">
+        <EntityContainer Name="CLBeneficiosModelStoreContainer">
           <EntitySet Name="Associado" EntityType="Self.Associado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Beneficios" EntityType="Self.Beneficios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Beneficios_Convenios" EntityType="Self.Beneficios_Convenios" Schema="dbo" store:Type="Tables" />
@@ -128,7 +128,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbCL_BeneficiosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CLBeneficiosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Associado">
           <Key>
             <PropertyRef Name="CPF" />
@@ -203,7 +203,7 @@
           <End Role="Associado" Type="Self.Associado" Multiplicity="*" />
           <End Role="Convenio" Type="Self.Convenio" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="dbCL_BeneficiosEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CLBeneficiosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Associadoes" EntityType="Self.Associado" />
           <EntitySet Name="Beneficios" EntityType="Self.Beneficio" />
           <EntitySet Name="Beneficios_Convenios" EntityType="Self.Beneficios_Convenios" />
@@ -226,9 +226,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbCL_BeneficiosModelStoreContainer" CdmEntityContainer="dbCL_BeneficiosEntities">
+        <EntityContainerMapping StorageEntityContainer="CLBeneficiosModelStoreContainer" CdmEntityContainer="CLBeneficiosEntities">
           <EntitySetMapping Name="Associadoes">
-            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Associado">
+            <EntityTypeMapping TypeName="CLBeneficiosModel.Associado">
               <MappingFragment StoreEntitySet="Associado">
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
@@ -239,7 +239,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Beneficios">
-            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Beneficio">
+            <EntityTypeMapping TypeName="CLBeneficiosModel.Beneficio">
               <MappingFragment StoreEntitySet="Beneficios">
                 <ScalarProperty Name="idBeneficio" ColumnName="idBeneficio" />
                 <ScalarProperty Name="Nome_Beneficio" ColumnName="Nome_Beneficio" />
@@ -250,7 +250,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Beneficios_Convenios">
-            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Beneficios_Convenios">
+            <EntityTypeMapping TypeName="CLBeneficiosModel.Beneficios_Convenios">
               <MappingFragment StoreEntitySet="Beneficios_Convenios">
                 <ScalarProperty Name="idBeneficio" ColumnName="idBeneficio" />
                 <ScalarProperty Name="idConvênio" ColumnName="idConvênio" />
@@ -261,7 +261,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Convenios">
-            <EntityTypeMapping TypeName="dbCL_BeneficiosModel.Convenio">
+            <EntityTypeMapping TypeName="CLBeneficiosModel.Convenio">
               <MappingFragment StoreEntitySet="Convenio">
                 <ScalarProperty Name="idConvênio" ColumnName="idConvênio" />
                 <ScalarProperty Name="Nome_Convenio" ColumnName="Nome_Convenio" />
@@ -270,7 +270,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Convenio_Associado" TypeName="dbCL_BeneficiosModel.Convenio_Associado" StoreEntitySet="Convenio_Associado">
+          <AssociationSetMapping Name="Convenio_Associado" TypeName="CLBeneficiosModel.Convenio_Associado" StoreEntitySet="Convenio_Associado">
             <EndProperty Name="Associado">
               <ScalarProperty Name="CPF" ColumnName="CPF" />
             </EndProperty>

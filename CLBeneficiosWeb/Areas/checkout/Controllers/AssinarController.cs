@@ -9,7 +9,7 @@ namespace CLBeneficiosWeb.Areas.checkout.Controllers
 {
     public class AssinarController : Controller
     {
-        dbCL_BeneficiosEntities db = new dbCL_BeneficiosEntities();
+        CLBeneficiosEntities db = new CLBeneficiosEntities();
 
         // GET: checkout/Assinar
         public ActionResult Index()

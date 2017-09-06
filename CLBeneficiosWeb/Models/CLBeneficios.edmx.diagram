@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b250f3dad1a04c49b0359e5ddbff72ee" Name="Diagram1">
-        <EntityTypeShape EntityType="dbCL_BeneficiosModel.Associado" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCL_BeneficiosModel.Beneficio" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCL_BeneficiosModel.Beneficios_Convenios" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCL_BeneficiosModel.Convenio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="dbCL_BeneficiosModel.FK_Beneficios_Convenios_Beneficios" ManuallyRouted="false" />
-        <AssociationConnector Association="dbCL_BeneficiosModel.FK_Beneficios_Convenios_Convenio" ManuallyRouted="false" />
-        <AssociationConnector Association="dbCL_BeneficiosModel.Convenio_Associado" ManuallyRouted="false" />
+      <Diagram DiagramId="744e0b3508754f0898da72c5038072c4" Name="Diagram1">
+        <EntityTypeShape EntityType="CLBeneficiosModel.Associado" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficio" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficios_Convenios" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Convenio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Beneficios" ManuallyRouted="false" />
+        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Convenio" ManuallyRouted="false" />
+        <AssociationConnector Association="CLBeneficiosModel.Convenio_Associado" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

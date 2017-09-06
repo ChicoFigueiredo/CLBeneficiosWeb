@@ -290,8 +290,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\CLBeneficios.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CLBeneficios.Context.cs</LastGenOutput>
       <DependentUpon>CLBeneficios.edmx</DependentUpon>
+      <LastGenOutput>CLBeneficios.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\CLBeneficios.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -302,13 +302,6 @@
     <Content Include="Areas\checkout\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Negocial\Views\web.config" />
-    <EntityDeploy Include="Models\CLBeneficios.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CLBeneficios.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CLBeneficios.edmx.diagram">
-      <DependentUpon>CLBeneficios.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\checkout\Views\Assinar\Index.cshtml" />
     <Content Include="Areas\Negocial\Views\Preco\Calcular.cshtml" />
     <Content Include="bower_components\bootstrap-checkbox-x\.bower.json" />
@@ -428,6 +421,18 @@
     <Content Include="bower_components\jquery\README.md" />
     <Content Include="bower_components\jquery\src\.eslintrc.json" />
     <Content Include="App_Data\CLBeneficios.bak" />
+    <EntityDeploy Include="Models\CLBeneficios.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CLBeneficios.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CLBeneficios.edmx.diagram">
+      <DependentUpon>CLBeneficios.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\CLBeneficiosWeb - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -471,6 +476,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -609,6 +624,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
