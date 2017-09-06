@@ -1,20 +1,19 @@
-﻿@using CLBeneficiosWeb.Models
+﻿@using System.Globalization
+@using CLBeneficiosWeb.Models
 @model List<Beneficios_Convenios>
 @{
     decimal Preco_Mensal = (decimal)ViewBag.Preco_Mensal;
     decimal Preco_Assinatura = (decimal)ViewBag.Preco_Assinatura;
     Layout = null;
+    CultureInfo BR = new CultureInfo("pt-BR");
 }
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <script src="~/Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="~/bower_components/bootstrap-checkbox-x/js/checkbox-x.min.js"></script>
-        <link href="~/bower_components/bootstrap-checkbox-x/css/checkbox-x.min.css" rel="stylesheet" />
-        <!--script src="~/Content/js/plugins/bootstrap/bootstrap.min.js"></script-->
+
+        @Styles.Render("~/b/css")
+        @Scripts.Render("~/b/js")
+
         <meta name="viewport" content="width=device-width" />
         <title>Clube de Benefícios</title>
         <style>
@@ -57,6 +56,95 @@
             .cbx-disabled {
                 background-color: blanchedalmond;
             }
+
+            #btnAssinar {
+                margin-top : 5px;
+                margin-bottom: 5px;
+            }
+            /*
+            input[type="checkbox"], input[type="radio"] {
+                margin: 4px 0 0;
+                line-height: normal;
+                font-size: 2em;
+                -ms-transform: scale(2);
+                -moz-transform: scale(2);
+                -webkit-transform: scale(1.5);
+                -o-transform: scale(2);
+                padding: 10px;
+            }*/
+            .space {
+                height: 10px;
+            }
+
+            .checkbox * {
+                box-sizing: border-box;
+                position: relative;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .checkbox {
+                display: inline-block;
+            }
+
+                .checkbox > input {
+                    display: none;
+                }
+
+                .checkbox > label {
+                    vertical-align: top;
+                    /*font-size: 18px;*/
+                    padding-left: 30px;
+                }
+
+                .checkbox > [type="checkbox"] + label:before {
+                    color: #777;
+                    content: '';
+                    position: absolute;
+                    left: 0px;
+                    display: inline-block;
+                    min-height: 20px;
+                    height: 20px;
+                    width: 20px;
+                    border: 2px solid #777;
+                    font-size: 15px;
+                    vertical-align: top;
+                    text-align: center;
+                    transition: all 0.2s ease-in;
+                    content: '';
+                }
+
+                .checkbox.radio-square > [type="checkbox"] + label:before {
+                    border-radius: 0px;
+                }
+
+                .checkbox.radio-rounded > [type="checkbox"] + label:before {
+                    border-radius: 25%;
+                }
+
+                .checkbox.radio-blue > [type="checkbox"] + label:before {
+                    border: 2px solid #ccc;
+                }
+
+                .checkbox > [type="checkbox"] + label:hover:before {
+                    border-color: lightgreen;
+                }
+
+                .checkbox > [type="checkbox"]:checked + label:before {
+                    width: 8px;
+                    height: 16px;
+                    border-top: transparent;
+                    border-left: transparent;
+                    border-color: green;
+                    border-width: 4px;
+                    transform: rotate(45deg);
+                    top: -4px;
+                    left: 4px;
+                }
         </style>
     </head>
     <body>
@@ -73,32 +161,30 @@
                         <h3 class="box-title">Selecione e acrescente produtos/serviços da lista abaixo à sua Cesta de Benefícios</h3>
                     </div>
                     <div class="box-body">
-                        <div class="col-md-12">
-                            <div class="col-md-9">
-                                <form id="lista_beneficios">
-                                    @foreach (Beneficios_Convenios b in Model)
+                        <div class="col-md-3 quadro-preso">
+                            <div class="">
+                                <span id="mostra_preco">
+                                    R$ <span class="preco" id="preco_pacote">@Preco_Mensal.ToString("#,##0.00", BR)</span> / mês
+                                    @if (Preco_Assinatura > 0)
                                     {
-                                        <div class="col-xs-12 col-sm-6 col-md-6 form-group">
-                                            <label for="chk@(b.idBeneficio.ToString("000000"))" class="cbx-label small">
-                                                <input type="checkbox" name="ListaBeneficios" valor="@b.idBeneficio" id="chk@(b.idBeneficio.ToString("000000"))" @(Html.Raw(b.Obrigatorio ? "checked=\"checked\"" : ""))  @(Html.Raw(b.Obrigatorio ? "disabled=\"disabled\"" : "")) data-size="lg" class="cbx-label"  @(Html.Raw(b.Obrigatorio ? "value=\"1\"" : "value=\"0\"")) />
-                                                <img class="icone-beneficio" src="~/Content/img/icones/b@(b.idBeneficio.ToString("000000")).png" /> @b.Beneficio.Nome_Beneficio
-                                            </label>
-                                        </div>
+                                        <br /><span>+ R$  @Preco_Assinatura.ToString("#,##0.00",BR) apenas na 1º mensalidade (postagem do cartão)</span>
                                     }
-                                </form>
+                                </span>
+                                <br /><button id="btnAssinar" class="btn btn-danger col-md-12">Assinar</button>
                             </div>
-                            <div class="col-md-3">
-                                <div class="col-md-12 quadro-preso">
-                                    <span id="mostra_preco">
-                                        R$ <span class="preco" id="preco_pacote">@Preco_Mensal.ToString("#,##0.00")</span> / mês
-                                        @if (Preco_Assinatura > 0)
-                                        {
-                                            <br /><span>+ R$  @Preco_Assinatura.ToString("#,##0.00") apenas na 1º mensalidade (postagem do cartão)</span>
-                                        }
-                                    </span>
-                                    <br /><button id="btnAssinar" class="btn btn-danger col-md-12">Assinar</button>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <form id="lista_beneficios">
+                                @foreach (Beneficios_Convenios b in Model)
+                                {
+                                    <div class="col-xs-12 col-sm-6 col-md-6 form-group checkbox">
+                                        <input type="checkbox" name="ListaBeneficios" valor="@b.idBeneficio" id="chk@(b.idBeneficio.ToString("000000"))" @(Html.Raw(b.Obrigatorio ? "checked=\"checked\"" : "")) @(Html.Raw(b.Obrigatorio ? "disabled=\"disabled\"" : "")) data-size="lg" class="cbx-label" @(Html.Raw(b.Obrigatorio ? "value=\"1\"" : "value=\"0\"")) />
+                                        <label for="chk@(b.idBeneficio.ToString("000000"))" class="cbx-label small">
+                                            <img class="icone-beneficio" src="~/Content/img/icones/b@(b.idBeneficio.ToString("000000")).png" /> @b.Beneficio.Nome_Beneficio
+                                        </label>
+                                    </div>
+                                }
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -109,17 +195,23 @@
 <script>
     $(document).on("ready", function () {
         $('input[name="ListaBeneficios"]')
-            .checkboxX({ threeState: false, enclosedLabel: true })
-            .click(function () {
+            //.iCheck(/*{ checkboxClass: 'icheckbox_flat'}*/)
+            .on('change',function () {
                 $('#mostra_preco').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>')
                 var l = "";
+                /*
                 $('input[name="ListaBeneficios"]').each(function () {
-                    l += (($(this).val() == 1) ? (l == "" ? "" : "&") + "B=" + $(this).attr('valor') : "");
+                    l += (($(this).val() == "1") ? (l == "" ? "" : "&") + "B=" + $(this).attr('valor') : "");
+                })
+                */
+                $('input[name="ListaBeneficios"]:checked').each(function () {
+                    l += (l == "" ? "" : "&") + "B=" + $(this).attr('valor');
                 })
                 $.get("/Negocial/Preco/Calcular?" + l, function (dados) {
                     $('#mostra_preco').html(dados)
                 });
             });
+            //.checkboxX({ threeState: false, enclosedLabel: true })
         $('#btnAssinar').click(function (e) {
             //e.defaultPrevented();
             alert('Assinar ' + $('#mostra_preco').text())

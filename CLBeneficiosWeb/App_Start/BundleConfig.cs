@@ -24,11 +24,21 @@ namespace CLBeneficiosWeb.App_Start
                 .Include("~/Content/js/plugins/select2/select2.full.js")
                 .Include("~/Content/js/plugins/moment/moment.js")
                 .Include("~/Content/js/plugins/datepicker/bootstrap-datepicker.js")
-                .Include("~/Content/js/plugins/icheck/icheck.js")
                 .Include("~/Content/js/plugins/validator.js")
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.js")
                 .Include("~/Content/js/app.js")
                 .Include("~/Content/js/init.js"));
+
+            bundles.Add(new StyleBundle("~/b/css")
+                .Include("~/Content/css/bootstrap.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/css/font-awesome.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/css/icheck/purple.css", new CssRewriteUrlTransformAbsolute())
+            );
+
+            bundles.Add(new ScriptBundle("~/b/js")
+                .Include("~/Content/js/plugins/jquery/jquery-2.2.4.min.js")
+                .Include("~/Content/js/plugins/icheck/icheck.js")
+            );
 
 #if DEBUG
             BundleTable.EnableOptimizations = false;

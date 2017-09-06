@@ -1,12 +1,14 @@
 ﻿@using CLBeneficiosWeb.Models
+@using System.Globalization
 @model List<Beneficios_Convenios>
 @{
     decimal Preco_Mensal = (decimal)ViewBag.Preco_Mensal;
     decimal Preco_Assinatura = (decimal)ViewBag.Preco_Assinatura;
     Layout = null;
+    CultureInfo BR = new CultureInfo("pt-BR");
 }
-R$ <span class="preco" id="preco_pacote">@Preco_Mensal.ToString("#,##0.00")</span> / mês
+R$ <span class="preco" id="preco_pacote">@Preco_Mensal.ToString("#,##0.00", BR)</span> / mês
 @if (Preco_Assinatura > 0)
 {
-    <br /><span>+ R$  @Preco_Assinatura.ToString("#,##0.00") apenas na 1º mensalidade (postagem do cartão)</span>
+    <br /><span>+ R$  @Preco_Assinatura.ToString("#,##0.00", BR) apenas na 1º mensalidade (postagem do cartão)</span>
 }
