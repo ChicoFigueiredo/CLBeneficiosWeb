@@ -19,16 +19,22 @@ namespace CLBeneficiosWeb.Models
         {
             this.Beneficios_Convenios = new HashSet<Beneficios_Convenios>();
             this.Associadoes = new HashSet<Associado>();
+            this.Grupo_Descontos = new HashSet<Grupo_Descontos>();
         }
     
         public int idConvênio { get; set; }
         public string Nome_Convenio { get; set; }
         public string Apelido_Convenio { get; set; }
         public string URL_Raiz { get; set; }
+        public Nullable<bool> E_Ativa { get; set; }
+        public byte Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Beneficios_Convenios> Beneficios_Convenios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Associado> Associadoes { get; set; }
+        public virtual Convenio_Status Convenio_Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grupo_Descontos> Grupo_Descontos { get; set; }
     }
 }

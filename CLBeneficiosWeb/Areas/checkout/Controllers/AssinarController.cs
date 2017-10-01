@@ -7,10 +7,8 @@ using CLBeneficiosWeb.Models;
 
 namespace CLBeneficiosWeb.Areas.checkout.Controllers
 {
-    public class AssinarController : Controller
+    public class AssinarController : ControllerMestre
     {
-        CLBeneficiosEntities db = new CLBeneficiosEntities();
-
         // GET: checkout/Assinar
         public ActionResult Index()
         {

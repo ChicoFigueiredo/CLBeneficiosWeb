@@ -5,13 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="744e0b3508754f0898da72c5038072c4" Name="Diagram1">
-        <EntityTypeShape EntityType="CLBeneficiosModel.Associado" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficio" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficios_Convenios" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CLBeneficiosModel.Convenio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Beneficios" ManuallyRouted="false" />
-        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Convenio" ManuallyRouted="false" />
-        <AssociationConnector Association="CLBeneficiosModel.Convenio_Associado" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Associado" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficio" Width="1.5" PointX="8.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Beneficios_Convenios" Width="2.375" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Convenio" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Beneficios" />
+        <AssociationConnector Association="CLBeneficiosModel.FK_Beneficios_Convenios_Convenio" />
+        <AssociationConnector Association="CLBeneficiosModel.Convenio_Associado" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Convenio_Status" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="CLBeneficiosModel.FK_Convenio_Convenio_Status" />
+        <EntityTypeShape EntityType="CLBeneficiosModel.Grupo_Descontos" Width="1.5" PointX="5.25" PointY="4.625" />
+        <AssociationConnector Association="CLBeneficiosModel.Convenio_Grupo_Desconto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

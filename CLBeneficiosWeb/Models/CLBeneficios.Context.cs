@@ -29,5 +29,7 @@ namespace CLBeneficiosWeb.Models
         public virtual DbSet<Beneficio> Beneficios { get; set; }
         public virtual DbSet<Beneficios_Convenios> Beneficios_Convenios { get; set; }
         public virtual DbSet<Convenio> Convenios { get; set; }
+        public virtual DbSet<Convenio_Status> Convenio_Status { get; set; }
+        public virtual DbSet<Grupo_Descontos> Grupo_Descontos { get; set; }
     }
 }

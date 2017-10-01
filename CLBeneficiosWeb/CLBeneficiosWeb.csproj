@@ -22,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -270,7 +271,41 @@
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
     <Content Include="bower_components\jquery\src\wrap.js" />
+    <Content Include="Content\assets\css\font-awesome.min.css" />
+    <Content Include="Content\assets\css\ie8.css" />
+    <Content Include="Content\assets\css\ie9.css" />
+    <Content Include="Content\assets\css\images\intro.svg" />
+    <Content Include="Content\assets\css\main0000002.css" />
+    <Content Include="Content\assets\css\main0000001.css" />
+    <Content Include="Content\assets\css\main.css" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\js\ie\html5shiv.js" />
+    <Content Include="Content\assets\js\ie\respond.min.js" />
+    <Content Include="Content\assets\js\jquery.min.js" />
+    <Content Include="Content\assets\js\jquery.scrollex.min.js" />
+    <Content Include="Content\assets\js\jquery.scrolly.min.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\skel.min.js" />
+    <Content Include="Content\assets\js\util.js" />
+    <Content Include="Content\images\pic01.jpg" />
+    <Content Include="Content\images\pic02.jpg" />
+    <Content Include="Content\images\pic03.jpg" />
+    <Content Include="Content\images\pic04.jpg" />
+    <Content Include="Content\images\pic05.jpg" />
+    <Content Include="Content\images\pic06.jpg" />
+    <Content Include="Content\img\cartao\cartao0000001.png" />
+    <Content Include="Content\img\cartao\cartao0000002.png" />
     <Content Include="Content\img\convenios\c0000001.png" />
+    <Content Include="Content\img\convenios\c0000002.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000001.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000011.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000012.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000002.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000004.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000005.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000007.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000008.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000009.png" />
     <Content Include="Content\img\icones\b000001.png" />
     <Content Include="Content\img\icones\b000002.png" />
     <Content Include="Content\img\icones\b000003.png" />
@@ -298,6 +333,41 @@
       <DependentUpon>CLBeneficios.edmx</DependentUpon>
       <LastGenOutput>CLBeneficios.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\sass\base\_page.scss" />
+    <Content Include="Content\assets\sass\base\_typography.scss" />
+    <Content Include="Content\assets\sass\components\_box.scss" />
+    <Content Include="Content\assets\sass\components\_button.scss" />
+    <Content Include="Content\assets\sass\components\_features.scss" />
+    <Content Include="Content\assets\sass\components\_form.scss" />
+    <Content Include="Content\assets\sass\components\_icon.scss" />
+    <Content Include="Content\assets\sass\components\_image.scss" />
+    <Content Include="Content\assets\sass\components\_list.scss" />
+    <Content Include="Content\assets\sass\components\_section.scss" />
+    <Content Include="Content\assets\sass\components\_split.scss" />
+    <Content Include="Content\assets\sass\components\_spotlights.scss" />
+    <Content Include="Content\assets\sass\components\_table.scss" />
+    <Content Include="Content\assets\sass\components\_wrapper.scss" />
+    <Content Include="Content\assets\sass\ie8.scss" />
+    <Content Include="Content\assets\sass\ie9.scss" />
+    <Content Include="Content\assets\sass\layout\_footer.scss" />
+    <Content Include="Content\assets\sass\layout\_header.scss" />
+    <Content Include="Content\assets\sass\layout\_intro.scss" />
+    <Content Include="Content\assets\sass\layout\_sidebar.scss" />
+    <Content Include="Content\assets\sass\layout\_wrapper.scss" />
+    <Content Include="Content\assets\sass\libs\_functions.scss" />
+    <Content Include="Content\assets\sass\libs\_mixins.scss" />
+    <Content Include="Content\assets\sass\libs\_skel.scss" />
+    <Content Include="Content\assets\sass\libs\_vars.scss" />
+    <Content Include="Content\assets\sass\main.scss" />
+    <Content Include="Content\img\grupo_descontos\Thumbs.db" />
+    <None Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Home\elements.html" />
+    <Content Include="Views\Home\generic.html" />
     <Content Include="Web.config" />
     <Content Include="Areas\checkout\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -433,7 +503,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index---.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -457,6 +527,7 @@
     <Compile Include="Models\Beneficios_Convenios.cs">
       <DependentUpon>CLBeneficios.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassesGlobais.cs" />
     <Compile Include="Models\CLBeneficios.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -472,7 +543,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CLBeneficios.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ControllerMestre.cs" />
     <Compile Include="Models\Convenio.cs">
+      <DependentUpon>CLBeneficios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Convenio_Status.cs">
+      <DependentUpon>CLBeneficios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grupo_Descontos.cs">
       <DependentUpon>CLBeneficios.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -605,10 +683,10 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Shared\_ControlSidebar.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\admin\_ControlSidebar.cshtml" />
+    <Content Include="Views\Shared\admin\_Header.cshtml" />
+    <Content Include="Views\Shared\admin\_Layout.cshtml" />
+    <Content Include="Views\Shared\admin\_Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -623,6 +701,7 @@
     <Folder Include="Areas\checkout\Views\Shared\" />
     <Folder Include="Areas\Negocial\Models\" />
     <Folder Include="Areas\Negocial\Views\Shared\" />
+    <Folder Include="Views\ControlerMestre\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
