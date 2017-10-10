@@ -298,6 +298,7 @@
     <Content Include="Content\img\convenios\c0000001.png" />
     <Content Include="Content\img\convenios\c0000002.png" />
     <Content Include="Content\img\descontos.png" />
+    <Content Include="Content\img\grupo_descontos\gd0000010.png" />
     <Content Include="Content\img\grupo_descontos\gd0000001.png" />
     <Content Include="Content\img\grupo_descontos\gd0000011.png" />
     <Content Include="Content\img\grupo_descontos\gd0000012.png" />
@@ -366,6 +367,8 @@
     <Content Include="Content\assets\sass\libs\_vars.scss" />
     <Content Include="Content\assets\sass\main.scss" />
     <Content Include="Content\img\grupo_descontos\Thumbs.db" />
+    <Content Include="App_Data\clbeneficios-2017-10-09.7z" />
+    <None Include="Properties\PublishProfiles\clbeneficios - Web Deploy.pubxml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\elements.html" />
     <Content Include="Views\Home\generic.html" />
@@ -491,7 +494,6 @@
     <Content Include="bower_components\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="bower_components\jquery\README.md" />
     <Content Include="bower_components\jquery\src\.eslintrc.json" />
-    <Content Include="App_Data\CLBeneficios.bak" />
     <EntityDeploy Include="Models\CLBeneficios.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CLBeneficios.Designer.cs</LastGenOutput>
@@ -499,7 +501,6 @@
     <Content Include="Models\CLBeneficios.edmx.diagram">
       <DependentUpon>CLBeneficios.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\CLBeneficiosWeb - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -684,10 +685,10 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Shared\admin\_ControlSidebar.cshtml" />
-    <Content Include="Views\Shared\admin\_Header.cshtml" />
-    <Content Include="Views\Shared\admin\_Layout.cshtml" />
-    <Content Include="Views\Shared\admin\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\Admin\_ControlSidebar.cshtml" />
+    <Content Include="Views\Shared\Admin\_Header.cshtml" />
+    <Content Include="Views\Shared\Admin\_Layout.cshtml" />
+    <Content Include="Views\Shared\Admin\_Sidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
